@@ -1,0 +1,13 @@
+# Build/IDE
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.log
+# Pacotes
+*.nupkg
+*.snupkg
+# IDEs
+.idea/
+.vscode/

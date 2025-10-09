@@ -1,0 +1,199 @@
+﻿using System;
+using System.Xml.Serialization;
+
+namespace AdicionarNomeNotasAlunos
+{
+    class Program
+    {
+
+
+        public static List<string> Nomes = new List<string>();
+        public static List<int> Notas = new List<int>();
+
+        struct Metodos
+        {
+            static void Main(string[] args)
+            {
+                Menu();
+            }
+
+            static void Menu()
+            {
+                Console.WriteLine();
+
+                Console.WriteLine(" MENU");
+                Console.WriteLine(" 1 - ADICIONAR NOME DO ALUNO E A NOTA");
+                Console.WriteLine(" 2 - LISTAR NOMES E NOTAS");
+                Console.WriteLine(" 3 - LISTAR APENAS NOMES");
+                Console.WriteLine(" 4 - DEFINIR ALUNOS APROVADOS E REPROVADOS");
+                Console.WriteLine(" 0 - SAIR");
+                int opcao;
+
+                while (true)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("ESCOLHA UMA DAS FUNCIONALIDADES USANDO O NUEMRO DE ACORDO");
+                    var s = Console.ReadLine()?.Trim() ?? "";
+
+                    if (int.TryParse(s, out opcao) && opcao >= 0 && opcao <= 4)
+                        break;
+
+
+                    Console.WriteLine($"esse valor e invalido");
+                    Console.WriteLine($"escolha um valor correto");
+
+                    Menu();
+                }
+
+                switch (opcao)
+                {
+                    case 1:
+                        AdicionarNomesNotas();
+                        break;
+
+                    case 2:
+                        ListarNomesAlunos();
+                        break;
+
+                    case 3:
+                        ListarNomes();
+                        break;
+
+                    case 4:
+                        AlunosAprovadoseReprovados();
+                        break;
+
+                    case 0:
+                        Sair();
+                        break;
+                }
+            }
+
+            public static void AdicionarNomesNotas()
+            {
+                Console.Clear();
+                var MundialNotas = Nomes;
+
+                Console.WriteLine("DIGITE O NOME DO ALUNO");
+                string Nome = Console.ReadLine();
+                Nomes.Add(Nome);
+
+                //Console.WriteLine($"DIGITE A NOTA FINAL DO(a)  {Nome} ");
+                int Nota;
+                while (true)
+                {
+                    Console.Write($"Digite a nota do(a) { Nome } (1 a 10): ");
+                    var s = Console.ReadLine()?.Trim() ?? "";
+
+                    if (int.TryParse(s, out Nota) && Nota >= 1 && Nota <= 10)
+                        break; 
+
+                    Console.WriteLine("Apenas números de 1 a 10 são permitidos.");
+                    Console.WriteLine();
+                }
+
+                Notas.Add(Nota);
+                Menu();
+
+            }
+
+            public static void ListarNomesAlunos()
+            {
+                VeificarCondicoese();
+
+                Console.Clear();
+
+                for (int i = 0; i < Nomes.Count; i++)
+                {
+                    Console.WriteLine((i + 1) + " - " + "O ALUNO: " + Nomes[i] + " TEM UMA NOTA: " + Notas[i] + " ");
+                }
+
+                Menu();
+            }
+
+            public static void Sair()
+            {
+                Console.Clear();
+                Console.WriteLine();
+                Console.WriteLine("OBRIGADO POR USAR NOSSO SISTEMA");
+                int Contador = 0;
+                for (int i = 0; i < Nomes.Count; i++)
+                {
+                    Contador++;
+                }
+                Console.WriteLine();
+                Console.WriteLine(" O SISTEMA FOI ALTERADO " + Contador);
+            }
+
+            public static void ListarNomes()
+            {
+                Console.Clear();
+                VeificarCondicoese();
+                for (int i = 0; i < Nomes.Count; i++)
+                {
+                    Console.WriteLine((i + 1) + " - " + Nomes[i]);
+                }
+
+                Menu();
+            }
+
+            public static void AlunosAprovadoseReprovados()
+            {
+                VeificarCondicoese();
+                Console.Clear();
+
+                Console.WriteLine("DEFINA UMA NOTA MINIMA A QUAL O ALUNO PODE SER APROVADO");
+                int validarNotas;
+                while (true)
+                {
+                    var s = Console.ReadLine()?.Trim() ?? "";
+
+                    if (int.TryParse(s, out validarNotas) && validarNotas >= 1 && validarNotas <= 10)
+                        break;
+                    
+                    Console.WriteLine("Apenas números de 1 a 10 são permitidos.");
+                    Console.WriteLine();
+                }
+
+                Console.WriteLine("ALUNOS APROVADOS");
+                for (int i = 0; i < Notas.Count; i++)
+                {
+                    if (Notas[i] >= validarNotas)
+                    {
+                        Console.WriteLine((i + 1) + " - " + Nomes[i] + " NOTA: " + Notas[i]);
+
+                    }
+                    else
+                    {
+                    }
+                }
+                Console.WriteLine();
+                Console.WriteLine("ALUNOS REPROVADOS");
+                for (int j = 0; j < Notas.Count; j++)
+                {
+                    if (Notas[j] <= validarNotas)
+                    {
+
+                        Console.WriteLine((j + 1) + " - " + Nomes[j] + " NOTA: " + Notas[j]);
+                    }
+                }
+                Console.WriteLine();
+                Menu();
+            }
+
+
+            public static void VeificarCondicoese()
+            {
+                if (Nomes.Count == 0)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("CRIE UM NOME E NOTA PARA ACESSAR ESSA FUNCIONALIDADE");
+                    Menu();
+                }
+            }
+        }
+    }
+}
+
+
+
