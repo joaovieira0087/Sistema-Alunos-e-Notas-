@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.AccessControl;
 using System.Xml.Serialization;
 
 namespace AdicionarNomeNotasAlunos
@@ -26,6 +27,8 @@ namespace AdicionarNomeNotasAlunos
                 Console.WriteLine(" 2 - LISTAR NOMES E NOTAS");
                 Console.WriteLine(" 3 - LISTAR APENAS NOMES");
                 Console.WriteLine(" 4 - DEFINIR ALUNOS APROVADOS E REPROVADOS");
+                Console.WriteLine(" 5 -  VER A MAIOR NOTA");
+                Console.WriteLine(" 6 -  VER A MENOR NOTA");
                 Console.WriteLine(" 0 - SAIR");
                 int opcao;
 
@@ -35,7 +38,7 @@ namespace AdicionarNomeNotasAlunos
                     Console.WriteLine("ESCOLHA UMA DAS FUNCIONALIDADES USANDO O NUEMRO DE ACORDO");
                     var s = Console.ReadLine()?.Trim() ?? "";
 
-                    if (int.TryParse(s, out opcao) && opcao >= 0 && opcao <= 4)
+                    if (int.TryParse(s, out opcao) && opcao >= 0 && opcao <= 6)
                         break;
 
 
@@ -49,23 +52,31 @@ namespace AdicionarNomeNotasAlunos
                 {
                     case 1:
                         AdicionarNomesNotas();
-                        break;
+                    break;
 
                     case 2:
                         ListarNomesAlunos();
-                        break;
+                    break;
 
                     case 3:
                         ListarNomes();
-                        break;
+                    break;
 
                     case 4:
                         AlunosAprovadoseReprovados();
-                        break;
+                    break;
+
+                    case 5:
+                        MaiorNota();
+                    break;
+
+                    case 6:
+                        MenorNota();
+                    break;
 
                     case 0:
                         Sair();
-                        break;
+                    break;
                 }
             }
 
@@ -109,20 +120,6 @@ namespace AdicionarNomeNotasAlunos
                 }
 
                 Menu();
-            }
-
-            public static void Sair()
-            {
-                Console.Clear();
-                Console.WriteLine();
-                Console.WriteLine("OBRIGADO POR USAR NOSSO SISTEMA");
-                int Contador = 0;
-                for (int i = 0; i < Nomes.Count; i++)
-                {
-                    Contador++;
-                }
-                Console.WriteLine();
-                Console.WriteLine(" O SISTEMA FOI ALTERADO " + Contador);
             }
 
             public static void ListarNomes()
@@ -181,6 +178,61 @@ namespace AdicionarNomeNotasAlunos
                 Menu();
             }
 
+            static void MaiorNota()
+            {
+                VeificarCondicoese();
+                Console.Clear();
+                int ValorNotaArtual = 0;
+                for (int i = 0;i < Notas.Count;i++)
+                {
+                    
+                    if (Notas[i] > ValorNotaArtual)
+                    {
+                        ValorNotaArtual = Notas[i];
+
+                    }
+                }
+
+                for (int i = 0; i < Notas.Count; i++)
+                {
+                    if (ValorNotaArtual == Notas[i])
+                    {
+                        Console.WriteLine("A MAIOR NOTA É DO ALUNO(a) " + Nomes[i] + " QUE TEM UMA NOTA: " +  ValorNotaArtual);
+                    } 
+                }
+                Console.WriteLine();
+
+                /*Console.WriteLine("A MAIOR NOTA É " + ValorNotaArtual)*/;
+                Menu();
+            }
+
+            static void MenorNota()
+            {
+                VeificarCondicoese();
+                Console.Clear();
+                int ValorNotaArtual = 10;
+                for (int i = 0; i < Notas.Count; i++)
+                {
+
+                    if (Notas[i] < ValorNotaArtual)
+                    {
+                        ValorNotaArtual = Notas[i];
+
+                    }
+                }
+
+                for (int i = 0; i < Notas.Count; i++)
+                {
+                    if (ValorNotaArtual == Notas[i])
+                    {
+                        Console.WriteLine("A MAIOR NOTA É DO ALUNO(a) " + Nomes[i] + " QUE TEM UMA NOTA: " + ValorNotaArtual);
+                    }
+                }
+                Console.WriteLine();
+
+                /*Console.WriteLine("A MAIOR NOTA É " + ValorNotaArtual)*/;
+                Menu();
+            }
 
             public static void VeificarCondicoese()
             {
@@ -190,6 +242,20 @@ namespace AdicionarNomeNotasAlunos
                     Console.WriteLine("CRIE UM NOME E NOTA PARA ACESSAR ESSA FUNCIONALIDADE");
                     Menu();
                 }
+            }
+
+            public static void Sair()
+            {
+                Console.Clear();
+                Console.WriteLine();
+                Console.WriteLine("OBRIGADO POR USAR NOSSO SISTEMA");
+                int Contador = 0;
+                for (int i = 0; i < Nomes.Count; i++)
+                {
+                    Contador++;
+                }
+                Console.WriteLine();
+                Console.WriteLine(" VOCÊ USOU " + Contador + " NOSSO SISTEMA");
             }
         }
     }
