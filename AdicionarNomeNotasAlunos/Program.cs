@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization.Formatters;
 using System.Security.AccessControl;
 using System.Xml.Serialization;
 
@@ -29,6 +30,7 @@ namespace AdicionarNomeNotasAlunos
                 Console.WriteLine(" 4 - DEFINIR ALUNOS APROVADOS E REPROVADOS");
                 Console.WriteLine(" 5 -  VER A MAIOR NOTA");
                 Console.WriteLine(" 6 -  VER A MENOR NOTA");
+                Console.WriteLine(" 7 -  EDITAR NOME");
                 Console.WriteLine(" 0 - SAIR");
                 int opcao;
 
@@ -38,7 +40,7 @@ namespace AdicionarNomeNotasAlunos
                     Console.WriteLine("ESCOLHA UMA DAS FUNCIONALIDADES USANDO O NUEMRO DE ACORDO");
                     var s = Console.ReadLine()?.Trim() ?? "";
 
-                    if (int.TryParse(s, out opcao) && opcao >= 0 && opcao <= 6)
+                    if (int.TryParse(s, out opcao) && opcao >= 0 && opcao <= 7)
                         break;
 
 
@@ -72,6 +74,10 @@ namespace AdicionarNomeNotasAlunos
 
                     case 6:
                         MenorNota();
+                    break;
+
+                    case 7:
+                        EditarNome();
                     break;
 
                     case 0:
@@ -234,10 +240,48 @@ namespace AdicionarNomeNotasAlunos
                 Menu();
             }
 
+            static void EditarNome()
+            {
+                
+                Console.Clear();
+                VeificarCondicoese();
+                Console.WriteLine("Selecione o numero que corresponda com o nome que você quer editar".ToUpper());
+                int NumeroEditar = 0;
+                Console.WriteLine();
+                for (int i = 0;i < Nomes.Count;i++)
+                {
+                    Console.WriteLine((i + 1 ) + " - " + Nomes[i]);
+                }
+
+                while (true)
+                {
+                    Console.WriteLine();
+                    var s = Console.ReadLine()?.Trim() ?? "";
+
+                    if (int.TryParse(s, out NumeroEditar) && NumeroEditar >= 1 && NumeroEditar <= Nomes.Count)
+                        break;
+
+                    Console.WriteLine("Escolha o número que está ao lado do nome que você deseja editar.");
+                    s = Console.ReadLine()?.Trim() ?? "";
+                }
+
+                NumeroEditar = NumeroEditar - 1;
+                for (int i = NumeroEditar; i == NumeroEditar; i++)
+                {
+                    Console.WriteLine("selecione o novo Nome para ".ToUpper() + Nomes[i]);
+                    string NomeAtualizado = Console.ReadLine();
+
+                    Nomes[NumeroEditar] = NomeAtualizado;
+                }
+                Menu();
+            }
+
+
             public static void VeificarCondicoese()
             {
                 if (Nomes.Count == 0)
                 {
+                    Console.Clear();
                     Console.WriteLine();
                     Console.WriteLine("CRIE UM NOME E NOTA PARA ACESSAR ESSA FUNCIONALIDADE");
                     Menu();
