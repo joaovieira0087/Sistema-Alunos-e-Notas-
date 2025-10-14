@@ -30,7 +30,7 @@ namespace AdicionarNomeNotasAlunos
                 Console.WriteLine(" 4 - DEFINIR ALUNOS APROVADOS E REPROVADOS");
                 Console.WriteLine(" 5 -  VER A MAIOR NOTA");
                 Console.WriteLine(" 6 -  VER A MENOR NOTA");
-                Console.WriteLine(" 7 -  EDITAR NOME");
+                Console.WriteLine(" 7 -  EDITAR NOME OU NOTA");
                 Console.WriteLine(" 0 - SAIR");
                 int opcao;
 
@@ -247,10 +247,11 @@ namespace AdicionarNomeNotasAlunos
                 VeificarCondicoese();
                 Console.WriteLine("Selecione o numero que corresponda com o nome que você quer editar".ToUpper());
                 int NumeroEditar = 0;
+                string ValorDeNota;
                 Console.WriteLine();
                 for (int i = 0;i < Nomes.Count;i++)
                 {
-                    Console.WriteLine((i + 1 ) + " - " + Nomes[i]);
+                    Console.WriteLine((i + 1 ) + " - " + Nomes[i] + " NOTA: " + Notas[i]);
                 }
 
                 while (true)
@@ -272,6 +273,31 @@ namespace AdicionarNomeNotasAlunos
                     string NomeAtualizado = Console.ReadLine();
 
                     Nomes[NumeroEditar] = NomeAtualizado;
+                    Console.WriteLine();
+                    Console.WriteLine("Nome atualizado para: ".ToUpper() + NomeAtualizado);
+                    Console.WriteLine();
+                    Console.WriteLine("DESEJA ALTERAR A NOTA DO(a) ".ToUpper() + NomeAtualizado + " NOTA ATUAL: " + Notas[i]);
+                    Console.WriteLine("SE SIM DIGITE A NOTA A BAIXO SE NÃO APENAS DIGITE N".ToUpper());
+                    ValorDeNota = (Console.ReadLine());
+
+                    if (ValorDeNota ==  "n")
+                    {
+                        Console.WriteLine("Nome atual: ".ToUpper() + Nomes[i]);
+                        Console.WriteLine("Nota atual: ".ToUpper() + Notas[i]);
+
+                        Menu();
+                    }
+
+
+                    int ValorNotaAtualizado = 0;
+                    Notas[ValorNotaAtualizado] = int.Parse(ValorDeNota);
+
+                    Console.WriteLine("A nota do(a) ".ToUpper() + Nomes[i] + " FOI ATUALIZADA PARA: " + ValorDeNota);
+
+
+                    Console.WriteLine("Nome atual: ".ToUpper() + Nomes[i]);
+                    Console.WriteLine("Nota atual: ".ToUpper() + Notas[i]);
+
                 }
                 Menu();
             }
