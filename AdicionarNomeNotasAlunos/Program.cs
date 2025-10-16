@@ -28,9 +28,10 @@ namespace AdicionarNomeNotasAlunos
                 Console.WriteLine(" 2 - LISTAR NOMES E NOTAS");
                 Console.WriteLine(" 3 - LISTAR APENAS NOMES");
                 Console.WriteLine(" 4 - DEFINIR ALUNOS APROVADOS E REPROVADOS");
-                Console.WriteLine(" 5 -  VER A MAIOR NOTA");
-                Console.WriteLine(" 6 -  VER A MENOR NOTA");
-                Console.WriteLine(" 7 -  EDITAR NOME OU NOTA");
+                Console.WriteLine(" 5 - VER A MAIOR NOTA");
+                Console.WriteLine(" 6 - VER A MENOR NOTA");
+                Console.WriteLine(" 7 - EDITAR NOME OU NOTA");
+                Console.WriteLine(" 8 - EXCLUIR NOME E NOTA");
                 Console.WriteLine(" 0 - SAIR");
                 int opcao;
 
@@ -40,7 +41,7 @@ namespace AdicionarNomeNotasAlunos
                     Console.WriteLine("ESCOLHA UMA DAS FUNCIONALIDADES USANDO O NUEMRO DE ACORDO");
                     var s = Console.ReadLine()?.Trim() ?? "";
 
-                    if (int.TryParse(s, out opcao) && opcao >= 0 && opcao <= 7)
+                    if (int.TryParse(s, out opcao) && opcao >= 0 && opcao <= 8)
                         break;
 
 
@@ -78,6 +79,9 @@ namespace AdicionarNomeNotasAlunos
 
                     case 7:
                         EditarNome();
+                    break;
+                    case 8:
+                        ExcluirNotaNome();
                     break;
 
                     case 0:
@@ -299,6 +303,46 @@ namespace AdicionarNomeNotasAlunos
                     Console.WriteLine("Nota atual: ".ToUpper() + Notas[i]);
 
                 }
+                Menu();
+            }
+
+            static void ExcluirNotaNome()
+            {
+                Console.Clear();
+                VeificarCondicoese();
+                Console.WriteLine();
+                Console.WriteLine("Selecione o numero que corresponda com o nome que você quer excluir".ToUpper());
+
+                for (int i = 0; i < Nomes.Count; i++)
+                {
+                    Console.WriteLine((i + 1) + " - " + Nomes[i] + " NOTA: " + Notas[i]);
+                }
+
+                int NumeroExcluir = 0;
+                while (true)
+                {
+                    Console.WriteLine();
+                    var s = Console.ReadLine()?.Trim() ?? "";
+                    if (int.TryParse(s, out NumeroExcluir) && NumeroExcluir >= 1 && NumeroExcluir <= Nomes.Count)
+                        break;
+                    Console.WriteLine();
+                    Console.WriteLine("Escolha o número que está ao lado do nome que você deseja excluir.".ToUpper());
+                    s = Console.ReadLine()?.Trim() ?? "";
+                } 
+
+                NumeroExcluir = NumeroExcluir - 1;
+
+                for(int i = 0 ; i == NumeroExcluir; i++)
+                {
+                    Console.WriteLine("O NOME: " + Nomes[i] + " FOI EXCLUIDO COM SUCESSO");
+                    Nomes.RemoveAt(NumeroExcluir);
+                    Notas.RemoveAt(NumeroExcluir);
+                }
+
+
+
+
+
                 Menu();
             }
 
