@@ -274,7 +274,38 @@ namespace AdicionarNomeNotasAlunos
                 for (int i = NumeroEditar; i == NumeroEditar; i++)
                 {
                     Console.WriteLine("selecione o novo Nome para ".ToUpper() + Nomes[i]);
+                    Console.WriteLine("DESEJA ALTERAR SOMENTE A  NOTA DO(a), SE SIM DIGITE N PARA PROGREDIR OU SE NÃO DIGITE A NOTA A BAIXO".ToUpper() + " NOTA ATUAL: " + Notas[i]);
                     string NomeAtualizado = Console.ReadLine();
+
+                    if (NomeAtualizado == "n")
+                    {
+                        Console.WriteLine("Nome atual: ".ToUpper() + Nomes[i]);
+                        Console.WriteLine("Nota atual: ".ToUpper() + Notas[i]);
+
+
+                        Console.WriteLine("SE SIM DIGITE A NOTA A BAIXO SE NÃO APENAS DIGITE N".ToUpper());
+                        ValorDeNota = (Console.ReadLine());
+
+                        if (ValorDeNota == "n")
+                        {
+                            Console.WriteLine("Nome atual: ".ToUpper() + Nomes[i]);
+                            Console.WriteLine("Nota atual: ".ToUpper() + Notas[i]);
+
+                            Menu();
+                        }
+
+
+                        int ValorNotaAtualizadoOpN = 0;
+                        Notas[ValorNotaAtualizadoOpN] = int.Parse(ValorDeNota);
+
+                        Console.WriteLine("A nota do(a) ".ToUpper() + Nomes[i] + " FOI ATUALIZADA PARA: " + ValorDeNota);
+
+
+                        Console.WriteLine("Nome atual: ".ToUpper() + Nomes[i]);
+                        Console.WriteLine("Nota atual: ".ToUpper() + Notas[i]);
+                    }
+
+
 
                     Nomes[NumeroEditar] = NomeAtualizado;
                     Console.WriteLine();
