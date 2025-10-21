@@ -55,38 +55,38 @@ namespace AdicionarNomeNotasAlunos
                 {
                     case 1:
                         AdicionarNomesNotas();
-                    break;
+                        break;
 
                     case 2:
                         ListarNomesAlunos();
-                    break;
+                        break;
 
                     case 3:
                         ListarNomes();
-                    break;
+                        break;
 
                     case 4:
                         AlunosAprovadoseReprovados();
-                    break;
+                        break;
 
                     case 5:
                         MaiorNota();
-                    break;
+                        break;
 
                     case 6:
                         MenorNota();
-                    break;
+                        break;
 
                     case 7:
                         EditarNome();
-                    break;
+                        break;
                     case 8:
                         ExcluirNotaNome();
-                    break;
+                        break;
 
                     case 0:
                         Sair();
-                    break;
+                        break;
                 }
             }
 
@@ -103,11 +103,11 @@ namespace AdicionarNomeNotasAlunos
                 int Nota;
                 while (true)
                 {
-                    Console.Write($"Digite a nota do(a) { Nome } (1 a 10): ");
+                    Console.Write($"Digite a nota do(a) {Nome} (1 a 10): ");
                     var s = Console.ReadLine()?.Trim() ?? "";
 
                     if (int.TryParse(s, out Nota) && Nota >= 1 && Nota <= 10)
-                        break; 
+                        break;
 
                     Console.WriteLine("Apenas números de 1 a 10 são permitidos.");
                     Console.WriteLine();
@@ -126,7 +126,7 @@ namespace AdicionarNomeNotasAlunos
 
                 for (int i = 0; i < Nomes.Count; i++)
                 {
-                    Console.WriteLine((i + 1) + " - " + "O ALUNO: " + Nomes[i] + " TEM UMA NOTA: " + Notas[i] + " ");
+                    Console.WriteLine((i + 1) + " - " + $"Aluno(a): {Nomes[i]} | Nota atual: {Notas[i]}");
                 }
 
                 Menu();
@@ -138,7 +138,7 @@ namespace AdicionarNomeNotasAlunos
                 VeificarCondicoese();
                 for (int i = 0; i < Nomes.Count; i++)
                 {
-                    Console.WriteLine((i + 1) + " - " + Nomes[i]);
+                    Console.WriteLine((i + 1) + " - " + $"Aluno(a): {Nomes[i]}");
                 }
 
                 Menu();
@@ -157,7 +157,7 @@ namespace AdicionarNomeNotasAlunos
 
                     if (int.TryParse(s, out validarNotas) && validarNotas >= 1 && validarNotas <= 10)
                         break;
-                    
+
                     Console.WriteLine("Apenas números de 1 a 10 são permitidos.");
                     Console.WriteLine();
                 }
@@ -167,7 +167,7 @@ namespace AdicionarNomeNotasAlunos
                 {
                     if (Notas[i] >= validarNotas)
                     {
-                        Console.WriteLine((i + 1) + " - " + Nomes[i] + " NOTA: " + Notas[i]);
+                        Console.WriteLine((i + 1) + " - " + $"Aluno(a): {Nomes[i]} | Nota atual: {Notas[i]}");
 
                     }
                     else
@@ -193,9 +193,9 @@ namespace AdicionarNomeNotasAlunos
                 VeificarCondicoese();
                 Console.Clear();
                 int ValorNotaArtual = 0;
-                for (int i = 0;i < Notas.Count;i++)
+                for (int i = 0; i < Notas.Count; i++)
                 {
-                    
+
                     if (Notas[i] > ValorNotaArtual)
                     {
                         ValorNotaArtual = Notas[i];
@@ -207,12 +207,13 @@ namespace AdicionarNomeNotasAlunos
                 {
                     if (ValorNotaArtual == Notas[i])
                     {
-                        Console.WriteLine("A MAIOR NOTA É DO ALUNO(a) " + Nomes[i] + " QUE TEM UMA NOTA: " +  ValorNotaArtual);
-                    } 
+                        Console.WriteLine("A MAIOR NOTA É DO ALUNO(a) " + Nomes[i] + " QUE TEM UMA NOTA: " + ValorNotaArtual);
+                    }
                 }
                 Console.WriteLine();
 
-                /*Console.WriteLine("A MAIOR NOTA É " + ValorNotaArtual)*/;
+                /*Console.WriteLine("A MAIOR NOTA É " + ValorNotaArtual)*/
+                ;
                 Menu();
             }
 
@@ -240,22 +241,23 @@ namespace AdicionarNomeNotasAlunos
                 }
                 Console.WriteLine();
 
-                /*Console.WriteLine("A MAIOR NOTA É " + ValorNotaArtual)*/;
+                /*Console.WriteLine("A MAIOR NOTA É " + ValorNotaArtual)*/
+                ;
                 Menu();
             }
 
             static void EditarNome()
             {
-                
+
                 Console.Clear();
                 VeificarCondicoese();
                 Console.WriteLine("Selecione o numero que corresponda com o nome que você quer editar".ToUpper());
                 int NumeroEditar = 0;
                 string ValorDeNota;
                 Console.WriteLine();
-                for (int i = 0;i < Nomes.Count;i++)
+                for (int i = 0; i < Nomes.Count; i++)
                 {
-                    Console.WriteLine((i + 1 ) + " - " + Nomes[i] + " NOTA: " + Notas[i]);
+                    Console.WriteLine((i + 1) + " - " + $"Aluno(a): {Nomes[i]} | Nota atual: {Notas[i]}");
                 }
 
                 while (true)
@@ -273,23 +275,19 @@ namespace AdicionarNomeNotasAlunos
                 NumeroEditar = NumeroEditar - 1;
                 for (int i = NumeroEditar; i == NumeroEditar; i++)
                 {
-                    Console.WriteLine("selecione o novo Nome para ".ToUpper() + Nomes[i]);
-                    Console.WriteLine("DESEJA ALTERAR SOMENTE A  NOTA DO(a), SE SIM DIGITE N PARA PROGREDIR OU SE NÃO DIGITE A NOTA A BAIXO".ToUpper() + " NOTA ATUAL: " + Notas[i]);
+                    Console.WriteLine($"Aluno(a): {Nomes[i]} | Nota atual: {Notas[i]}");
+                    Console.Write("Digite N para manter a nota, ou digite a nova nota: ");
                     string NomeAtualizado = Console.ReadLine();
 
                     if (NomeAtualizado == "n")
                     {
-                        Console.WriteLine("Nome atual: ".ToUpper() + Nomes[i]);
-                        Console.WriteLine("Nota atual: ".ToUpper() + Notas[i]);
-
-
-                        Console.WriteLine("SE SIM DIGITE A NOTA A BAIXO SE NÃO APENAS DIGITE N".ToUpper());
+                        Console.WriteLine($"Aluno(a): {Nomes[i]} | Nota atual: {Notas[i]}");
+                        Console.Write("Digite N para manter o nome e alterar apenas a nota, ou digite o novo nome: ");
                         ValorDeNota = (Console.ReadLine());
 
                         if (ValorDeNota == "n")
                         {
-                            Console.WriteLine("Nome atual: ".ToUpper() + Nomes[i]);
-                            Console.WriteLine("Nota atual: ".ToUpper() + Notas[i]);
+                            Console.WriteLine($"Aluno(a): {Nomes[i]} | Nota atual: {Notas[i]}");
 
                             Menu();
                         }
@@ -301,8 +299,7 @@ namespace AdicionarNomeNotasAlunos
                         Console.WriteLine("A nota do(a) ".ToUpper() + Nomes[i] + " FOI ATUALIZADA PARA: " + ValorDeNota);
 
 
-                        Console.WriteLine("Nome atual: ".ToUpper() + Nomes[i]);
-                        Console.WriteLine("Nota atual: ".ToUpper() + Notas[i]);
+                        Console.WriteLine($"Aluno(a): {Nomes[i]} | Nota atual: {Notas[i]}");
                     }
 
 
@@ -315,10 +312,9 @@ namespace AdicionarNomeNotasAlunos
                     Console.WriteLine("SE SIM DIGITE A NOTA A BAIXO SE NÃO APENAS DIGITE N".ToUpper());
                     ValorDeNota = (Console.ReadLine());
 
-                    if (ValorDeNota ==  "n")
+                    if (ValorDeNota == "n")
                     {
-                        Console.WriteLine("Nome atual: ".ToUpper() + Nomes[i]);
-                        Console.WriteLine("Nota atual: ".ToUpper() + Notas[i]);
+                        Console.WriteLine((i + 1) + " - " + $"Aluno(a): {Nomes[i]} | Nota atual: {Notas[i]}");
 
                         Menu();
                     }
@@ -330,8 +326,7 @@ namespace AdicionarNomeNotasAlunos
                     Console.WriteLine("A nota do(a) ".ToUpper() + Nomes[i] + " FOI ATUALIZADA PARA: " + ValorDeNota);
 
 
-                    Console.WriteLine("Nome atual: ".ToUpper() + Nomes[i]);
-                    Console.WriteLine("Nota atual: ".ToUpper() + Notas[i]);
+                    Console.WriteLine($"Aluno(a): {Nomes[i]} | Nota atual: {Notas[i]}");
 
                 }
                 Menu();
@@ -346,7 +341,7 @@ namespace AdicionarNomeNotasAlunos
 
                 for (int i = 0; i < Nomes.Count; i++)
                 {
-                    Console.WriteLine((i + 1) + " - " + Nomes[i] + " NOTA: " + Notas[i]);
+                    Console.WriteLine((i + 1) + " - " + $"Aluno(a): {Nomes[i]} | Nota atual: {Notas[i]}");
                 }
 
                 int NumeroExcluir = 0;
@@ -359,15 +354,23 @@ namespace AdicionarNomeNotasAlunos
                     Console.WriteLine();
                     Console.WriteLine("Escolha o número que está ao lado do nome que você deseja excluir.".ToUpper());
                     s = Console.ReadLine()?.Trim() ?? "";
-                } 
+                }
 
                 NumeroExcluir = NumeroExcluir - 1;
-
-                for(int i = 0 ; i == NumeroExcluir; i++)
+                int valor = 0;
+                while (NumeroExcluir < Nomes.Count)
                 {
-                    Console.WriteLine("O NOME: " + Nomes[i] + " FOI EXCLUIDO COM SUCESSO");
-                    Nomes.RemoveAt(NumeroExcluir);
-                    Notas.RemoveAt(NumeroExcluir);
+
+                    if (valor == NumeroExcluir)
+                    {
+                        Console.WriteLine("Aluno(a) FOI EXCLUIDO COM SUCESSO");
+                        Nomes.RemoveAt(NumeroExcluir);
+                        Notas.RemoveAt(NumeroExcluir);
+
+                        NumeroExcluir = Nomes.Count;
+                    }
+
+                    valor++;
                 }
 
 
